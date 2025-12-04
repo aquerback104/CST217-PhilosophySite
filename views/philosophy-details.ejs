@@ -1,0 +1,15 @@
+<%- include('partials/header', { siteTitle: name }) %>
+
+<main class="container">
+  <h1><%= name %></h1>
+
+  <p><strong>Category:</strong> <%= category %></p>
+
+  <section class="details-block">
+    <p><%= description %></p>
+  </section>
+
+  <a class="back-btn" href="/philosophies">← Back to Philosophies</a>
+</main>
+
+<%- include('partials/footer') %>

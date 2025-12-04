@@ -1,0 +1,15 @@
+{
+  "Ancient Greece": ["Thales of Miletus", "Socrates", "Plato", "Aristotle", "Epicurus"],
+  "Ancient Rome (Stoics)": ["Marcus Aurelius", "Epictetus"],
+  "Early Asia": ["Confucius", "Laozi (Lao Tzu)", "Zhuangzi (Chuang Tzu)", "Mencius (Mengzi)"],
+  "Early Modern Europe (17th–18th centuries)": [
+    "René Descartes",
+    "Baruch Spinoza",
+    "Thomas Hobbes",
+    "John Locke",
+    "David Hume",
+    "Voltaire",
+    "Jean-Jacques Rousseau"
+  ],
+  "German Idealism & 19th Century": ["Immanuel Kant", "Friedrich Nietzsche"]
+}

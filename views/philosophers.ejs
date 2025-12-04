@@ -1,0 +1,22 @@
+<%- include('partials/header', { siteTitle: title }) %>
+
+<main class="container">
+  <h1>Philosophers</h1>
+
+  <div class="card-grid">
+    <% philosophers.forEach(philosopher => { %>
+      <div class="card">
+        <a href="/philosophers/<%= philosopher.name %>">
+          <img src="<%= philosopher.img %>" alt="<%= philosopher.name %>">
+          <h3><%= philosopher.name %></h3>
+        </a>
+        <p><a href="/philosophers/<%= philosopher.name %>">View Details</a></p>
+      </div>
+    <% }) %>
+  </div>
+
+  <p><a href="/">Back Home</a></p>
+</main>
+
+<%- include('partials/footer') %>
+<link rel="stylesheet" href="/style.css">

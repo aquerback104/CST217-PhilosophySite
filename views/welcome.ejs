@@ -1,0 +1,35 @@
+<%- include('partials/header', { siteTitle: title }) %>
+
+<main class="container">
+  <h1>Welcome to the Philosophy Hub 🌍</h1>
+  <img src="/thinker.jpg" alt="Thinker statue" class="hero">
+  <p>Exploring philosophy through its voices, visions, and wisdom...</p>
+
+  <% if (lastPhilosopher) { %>
+    <p class="last-visit">
+      Welcome back — last time you viewed <strong><%= lastPhilosopher %></strong>.
+    </p>
+
+    <a href="/philosophers/<%= encodeURIComponent(lastPhilosopher) %>" class="restore-btn">
+    🔄 Restore Last Philosopher
+  </a>
+  <% } %>
+
+  <nav>
+    <ul>
+      <li><a href="/form">Favorite Philosopher Form</a></li>
+      <li><a href="/philosophers">View Philosophers</a></li>
+      <li><a href="/philosophies">View Philosophies</a></li>
+      <li><a href="/api/snapshot">Daily Snapshot</a></li>
+      <li><a href="/time">Server Time</a></li>
+    </ul>
+  </nav>
+
+  <div class="quote">
+    <p>💭 Random Thought of the Day:</p>
+    <p><strong><%= quote %></strong></p>
+  </div>
+</main>
+
+<%- include('partials/footer') %>
+<link rel="stylesheet" href="/style.css">

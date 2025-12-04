@@ -1,0 +1,25 @@
+<%- include('partials/header', { siteTitle: title }) %>
+
+<main class="container">
+  <h1><%= philosopherName %></h1>
+  <p>Welcome to the page for <strong><%= philosopherName %></strong>.</p>
+
+  <% if (lastPhilosopher && lastPhilosopher !== philosopherName) { %>
+    <p class="last-visit">
+      Last time you visited <strong><%= lastPhilosopher %></strong>.
+    </p>
+  <% } %>
+
+  <img src="/phlimages/<%= philosopherName.toLowerCase().replace(/ /g, "_") %>.jpg" alt="<%= philosopherName %>" class="hero">
+
+  <p>Request time: <%= requestTime %></p>
+  <p>Device: <%= deviceType %></p>
+
+  <nav>
+    <a href="/philosophers">Back to Philosophers List</a> |
+    <a href="/">Home</a>
+  </nav>
+</main>
+
+<%- include('partials/footer') %>
+<link rel="stylesheet" href="/style.css">

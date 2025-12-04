@@ -1,0 +1,29 @@
+// Helper function to fetch JSON and update the DOM
+async function fetchRandomContent() {
+  try {
+    const res = await fetch('/api/snapshot');
+    const data = await res.json();
+
+    // --- Update philosopher ---
+    document.getElementById('random-philosopher').textContent = data.philosopher;
+    document.getElementById('random-philosopher-link').href = `/philosophers/${encodeURIComponent(data.philosopher)}`;
+    document.getElementById('philosopher-image').src = `/phlimages/${data.philosopher.replace(/\s+/g, '').toLowerCase()}.jpg`;
+    document.getElementById('philosopher-image').alt = data.philosopher;
+
+    // --- Update philosophy ---
+    document.getElementById('random-philosophy').textContent = data.philosophy;
+    document.getElementById('random-philosophy-link').href = `/philosophies/${encodeURIComponent(data.philosophy)}`;
+
+    // --- Update quote ---
+    document.getElementById('random-quote').textContent = data.quote;
+
+  } catch (err) {
+    console.error("Error fetching random content:", err);
+  }
+}
+
+// Initial fetch
+fetchRandomContent();
+
+// Refresh button
+document.getElementById('refresh-btn').addEventListener('click', fetchRandomContent);

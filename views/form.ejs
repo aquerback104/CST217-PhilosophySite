@@ -1,0 +1,15 @@
+<%- include('partials/header', { siteTitle: title }) %>
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= title %></title>
+</head>
+<body style="font-family: sans-serif; text-align:center;">
+  <h1>Who is your favorite philosopher?</h1>
+  <form action="/form" method="POST">
+    <input type="text" name="philosopher" placeholder="Enter a name" required>
+    <button type="submit">Submit</button>
+  </form>
+</body>
+</html>

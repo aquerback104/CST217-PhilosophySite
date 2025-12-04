@@ -1,0 +1,27 @@
+
+{
+  "Ancient Greek & Roman": {
+    "Stoicism": "Developing a good life through virtue, reason, and self-control...",
+    "Epicureanism": "The school rejected determinism and advocated hedonism...",
+    "Rationalism": "Opinions and actions should be based on reason...",
+    "Empiricism": "True knowledge comes from sensory experience."
+  },
+  "Early Asian": {
+    "Confucianism": "Emphasizing filial piety, ritual propriety, and humaneness.",
+    "Taoism (Daoism)": "Living in harmony with the Dao and personal balance."
+  },
+  "Enlightenment / Early Modern": {
+    "Social Contract Theory": "Individuals consent to form society/government...",
+    "Utilitarianism": "The right action maximizes overall happiness.",
+    "Determinism": "All events, including human decisions, are inevitable."
+  },
+  "Modern & Contemporary": {
+    "Egoism": "Self-interest is the foundation of morality.",
+    "Altruistic Egoism": "Altruism rooted in self-interest.",
+    "Existentialism": "A human figure confronted by many paths.",
+    "Nihilism": "Life and values are inherently meaningless.",
+    "Absurdism": "Life’s conflict between meaning and meaninglessness.",
+    "Marxism": "Political and economic theory emphasizing class struggle."
+  }
+}
+

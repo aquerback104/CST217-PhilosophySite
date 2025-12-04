@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= title %></title>
+</head>
+<body style="font-family: sans-serif; text-align:center; margin-top:40px;">
+  <h1><%= title %></h1>
+  <ul style="list-style:none; padding:0;">
+    <% routes.forEach(r => { %>
+      <li style="margin:10px;">
+        <a href="<%= r.path %>" style="text-decoration:none; color:blue;"><%= r.name %></a>
+      </li>
+    <% }) %>
+  </ul>
+</body>
+</html>
+
+<%- include('partials/header', { siteTitle: title }) %>
+
+<main>
+  <h2>Welcome to the Homework Hub!</h2>
+  <ul>
+    <% routes.forEach(route => { %>
+      <li><a href="<%= route.path %>"><%= route.name %></a></li>
+    <% }) %>
+  </ul>
+</main>
+
+<%- include('partials/footer') %>
