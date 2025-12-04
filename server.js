@@ -23,14 +23,14 @@ app.set("views", path.join(__dirname, "views"));
 // Middleware
 // -------------------------
 
-// Serve static files
-app.use(express.static(path.join(__dirname, "public")));
-
-// Cache static assets for 1 day
-app.use(express.static("public", { maxAge: "1d" }));
+// Serve static files and cache for 1 day
+app.use(express.static(path.join(__dirname, "public"), { maxAge: "1d" }));
 
 // Parse cookies
 app.use(cookieParser());
+
+// Parse POST form data
+app.use(express.urlencoded({ extended: true }));
 
 // Global logger + device detector
 app.use((req, res, next) => {
@@ -52,9 +52,6 @@ app.use((req, res, next) => {
   next();
 });
 
-// Parse URL-encoded form data (required for POST forms)
-app.use(express.urlencoded({ extended: true }));
-
 // -------------------------
 // Routes
 // -------------------------
@@ -62,6 +59,24 @@ app.use(express.urlencoded({ extended: true }));
 // Home Page
 app.get("/", (req, res) => {
   res.render("index", { title: "Philosophy Hub" });
+});
+
+// Favorite Philosopher Form (GET)
+app.get("/form", (req, res) => {
+  res.render("form", { title: "Favorite Philosopher Form" });
+});
+
+// Favorite Philosopher Form (POST)
+app.post("/form", (req, res) => {
+  const name = req.body.philosopher;
+
+  if (!name) return res.status(400).send("Please enter a philosopher.");
+
+  // Store in cookie
+  res.cookie("lastPhilosopher", name, { maxAge: 15 * 60 * 1000, httpOnly: true });
+
+  // Render result page
+  res.render("result", { title: "Your Favorite Philosopher", name });
 });
 
 // Philosophers List
@@ -95,24 +110,14 @@ app.get("/philosophers", (req, res) => {
 app.get("/philosophers/:name", (req, res) => {
   const philosopherName = req.params.name;
 
-  // store last visited philosopher
-  res.cookie("lastPhilosopher", philosopherName, {
-    maxAge: 15 * 60 * 1000,
-    httpOnly: true,
-  });
+  res.cookie("lastPhilosopher", philosopherName, { maxAge: 15 * 60 * 1000, httpOnly: true });
 
-  res.render("philosopher-profile", {
-    title: philosopherName,
-    philosopherName,
-  });
+  res.render("philosopher-profile", { title: philosopherName, philosopherName });
 });
 
 // Philosophies List
 app.get("/philosophies", (req, res) => {
-  res.render("philosophies", { 
-    title: "Philosophies",
-    philosophies 
-  });
+  res.render("philosophies", { title: "Philosophies", philosophies });
 });
 
 // Individual Philosophy Page (dynamic)
@@ -152,55 +157,40 @@ app.get("/quotes", (req, res) => {
   res.render("quotes", { title: "Daily Quotes" });
 });
 
-
-// Favorite Philosopher Form POST route
-app.use(express.urlencoded({ extended: true })); // must be above routes
-
-app.post("/form", (req, res) => {
-  const name = req.body.philosopher;
-  if (!name) return res.status(400).send("Please enter a philosopher.");
-  res.cookie("lastPhilosopher", name, { maxAge: 15 * 60 * 1000, httpOnly: true });
-  res.render("result", { title: "Your Favorite Philosopher", name: name });
-});
-
 // Temporary 500 test
 app.get("/test500", async (req, res, next) => {
   try {
     throw new Error("Intentional test error for 500 page.");
   } catch (err) {
-    next(err);  
+    next(err);
   }
 });
 
 // temp test route for 404
 app.get("/trigger-404", (req, res, next) => {
-  // Skip to the 404 middleware
-  next();
+  next(); // skip to 404
 });
 
-// 404 handler
-// 404 catch-all (must be last)
+// -------------------------
+// 404 Handler (must be last)
+// -------------------------
 app.use((req, res) => {
-  res.status(404).render("404", { 
-    title: "Page Not Found",
-    url: req.originalUrl 
-  });
+  res.status(404).render("404", { title: "Page Not Found", url: req.originalUrl });
 });
 
-
+// -------------------------
 // 500 Error Handler (must be last)
+// -------------------------
 app.use((err, req, res, next) => {
   const isProd = process.env.NODE_ENV === "production";
-  
   console.error("SERVER ERROR:", err);
 
   res.status(500).render("500", {
     siteTitle: "Server Error",
     message: isProd ? "Something went wrong." : err.message,
-    stack: isProd ? null : err.stack
+    stack: isProd ? null : err.stack,
   });
 });
-
 
 // -------------------------
 // Start Server

@@ -5,7 +5,7 @@ npm install
 npm start
 
 Then open:
-http://localhost:3000
+http://localhost:3000 (VSCode)
 
 Live URL:
 https://cst217-philosophywebapp.onrender.com
