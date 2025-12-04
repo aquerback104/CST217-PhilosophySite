@@ -154,20 +154,13 @@ app.get("/quotes", (req, res) => {
 
 
 // Favorite Philosopher Form POST route
+app.use(express.urlencoded({ extended: true })); // must be above routes
+
 app.post("/form", (req, res) => {
   const name = req.body.philosopher;
-
-  if (!name) {
-    return res.status(400).send("Please enter a philosopher.");
-  }
-
-  // Store in a cookie for reference
+  if (!name) return res.status(400).send("Please enter a philosopher.");
   res.cookie("lastPhilosopher", name, { maxAge: 15 * 60 * 1000, httpOnly: true });
-
-  res.render("result", {
-    title: "Your Favorite Philosopher",
-    name: name
-  });
+  res.render("result", { title: "Your Favorite Philosopher", name: name });
 });
 
 // Temporary 500 test
