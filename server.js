@@ -68,16 +68,17 @@ app.get("/form", (req, res) => {
 
 // Favorite Philosopher Form (POST)
 app.post("/form", (req, res) => {
-  const name = req.body.philosopher;
+  const name = req.body.name;          // matches input name="name"
+  const philosopher = req.body.philosopher; // matches input name="philosopher"
 
-  if (!name) return res.status(400).send("Please enter a philosopher.");
+  if (!philosopher) return res.status(400).send("Please enter a philosopher.");
 
-  // Store in cookie
-  res.cookie("lastPhilosopher", name, { maxAge: 15 * 60 * 1000, httpOnly: true });
+  // optional: store last philosopher in a cookie
+  res.cookie("lastPhilosopher", philosopher, { maxAge: 15 * 60 * 1000, httpOnly: true });
 
-  // Render result page
-  res.render("result", { title: "Your Favorite Philosopher", name });
+  res.render("result", { title: "Your Favorite Philosopher", name, philosopher });
 });
+
 
 // Philosophers List
 app.get("/philosophers", (req, res) => {
