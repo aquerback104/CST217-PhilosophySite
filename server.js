@@ -52,6 +52,9 @@ app.use((req, res, next) => {
   next();
 });
 
+// Parse URL-encoded form data (required for POST forms)
+app.use(express.urlencoded({ extended: true }));
+
 // -------------------------
 // Routes
 // -------------------------
@@ -147,6 +150,24 @@ app.get("/articles", (req, res) => {
 // Quotes
 app.get("/quotes", (req, res) => {
   res.render("quotes", { title: "Daily Quotes" });
+});
+
+
+// Favorite Philosopher Form POST route
+app.post("/form", (req, res) => {
+  const name = req.body.philosopher;
+
+  if (!name) {
+    return res.status(400).send("Please enter a philosopher.");
+  }
+
+  // Store in a cookie for reference
+  res.cookie("lastPhilosopher", name, { maxAge: 15 * 60 * 1000, httpOnly: true });
+
+  res.render("result", {
+    title: "Your Favorite Philosopher",
+    name: name
+  });
 });
 
 // Temporary 500 test

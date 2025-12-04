@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title><%= title %></title>
-</head>
-<body style="font-family: sans-serif; text-align:center;">
-  <h1>Nice choice!</h1>
-  <p>Your favorite philosopher is: <strong><%= philosopher %></strong></p>
-  <a href="/">Go Back</a>
-</body>
-</html>
+<%- include('partials/header', { siteTitle: "Favorite Philosopher" }) %>
+
+<h1>Nice choice!</h1>
+<p>Your favorite philosopher is: <strong><%= name %></strong></p>
+<p><a href="/">Go Back</a></p>
+
+<%- include('partials/footer') %>
