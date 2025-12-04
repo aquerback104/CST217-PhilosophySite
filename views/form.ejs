@@ -1,9 +1,25 @@
-<%- include('partials/header', { siteTitle: "Favorite Philosopher Form" }) %>
+<%- include('partials/header', { siteTitle: title }) %>
 
-<h1>Who is your favorite philosopher?</h1>
-<form action="/form" method="POST">
-  <input type="text" name="philosopher" placeholder="Enter a name" required>
-  <button type="submit">Submit</button>
-</form>
+<main class="container">
+  <h1 class="mt-4 mb-3 text-center">Who is your favorite philosopher?</h1>
+
+  <form action="/form" method="POST" class="form-container mx-auto" style="max-width: 400px;">
+    <div class="form-group mb-3">
+      <input 
+        type="text" 
+        name="philosopher" 
+        placeholder="Enter a name" 
+        required 
+        class="form-control"
+        style="padding: 0.5rem; width: 100%; font-size: 1rem;"
+      >
+    </div>
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 1rem;">
+        Submit
+      </button>
+    </div>
+  </form>
+</main>
 
 <%- include('partials/footer') %>

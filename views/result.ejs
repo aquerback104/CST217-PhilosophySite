@@ -1,7 +1,18 @@
-<%- include('partials/header', { siteTitle: "Favorite Philosopher" }) %>
+<%- include('partials/header', { siteTitle: title }) %>
 
-<h1>Nice choice!</h1>
-<p>Your favorite philosopher is: <strong><%= name %></strong></p>
-<p><a href="/">Go Back</a></p>
+<main class="container text-center mt-5">
+  <h2>Thank You for Sharing! 🌟</h2>
+
+  <p class="lead mt-4">
+    <strong><%= name %></strong>, your favorite philosopher is:
+    <strong><%= philosopher %></strong>
+  </p>
+
+  <div class="mt-4">
+    <a href="/" class="btn btn-primary mx-1">Return Home</a>
+    <a href="/philosophers" class="btn btn-secondary mx-1">Explore Philosophers</a>
+    <a href="/philosophies" class="btn btn-secondary mx-1">Explore Philosophies</a>
+  </div>
+</main>
 
 <%- include('partials/footer') %>
